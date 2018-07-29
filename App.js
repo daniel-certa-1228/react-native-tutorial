@@ -1,17 +1,55 @@
 import React, { Component } from 'react';
-import { AppRegistry, View } from 'react-native';
+import { Alert, AppRegistry, Button, StyleSheet, View } from 'react-native';
 
-export default class FixedDimensionsBasics extends Component {
+export default class ButtonBasics extends Component {
+    _onPressButton() {
+        Alert.alert('You touched the button.')
+    }
+
     render() {
         return (
-                // Try removing the `flex: 1` on the parent View.
-                // The parent will not have dimensions, so the children can't expand.
-                // What if you add `height: 300` instead of `flex: 1`?
-            <View style={{flex: 1}}>
-                <View style={{flex: 1, backgroundColor: 'powderblue'}} />
-                <View style={{flex: 2, backgroundColor: 'skyblue'}} />
-                <View style={{flex: 3, backgroundColor: 'steelblue'}} />
+            <View style={styles.container}>
+                <View style={styles.buttonContainer}>
+                    <Button
+                        onPress={this._onPressButton}
+                        title="Press Me"
+                    />
+                </View>
+                <View style={styles.buttonContainer}>
+                    <Button
+                        onPress={this._onPressButton}
+                        title="No, Press Me"
+                        color= "#841584"
+                    />
+                </View>
+                <View style={styles.alternativeLayoutButtonContainer}>
+                    <Button
+                        onPress={this._onPressButton}
+                        title="Press Me Or Die"
+                    />
+                    <Button
+                        onPress={this._onPressButton}
+                        title="I Know Where You Live"
+                        color="#841584"
+                    />
+                </View>
             </View>
         )
     }
 }
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        justifyContent: 'center',
+        backgroundColor: '#E9F8FD'
+    },
+    buttonContainer: {
+        margin: 20
+    },
+    alternativeLayoutButtonContainer: {
+        margin: 20,
+        flexDirection: 'row',
+        justifyContent: 'space-between'
+    }
+})
